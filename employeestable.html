@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DVC Employee Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 30px;
+            background: #f4f6f8;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        table {
+            background: white;
+        }
+        
+        .filter-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h2 class="mb-4">DVC Employee Quarter Records</h2>
+    </center>
+
+    <div class="filter-bar d-flex justify-content-between align-items-center">
+        <input type="text" class="form-control w-25" id="searchInput" placeholder="Search by Name or ID">
+        <select id="gradeFilter" class="form-select w-25">
+      <option value="">Filter by Grade</option>
+      <option value="A">Grade A</option>
+      <option value="B">Grade B</option>
+      <option value="C">Grade C</option>
+      <option value="D">Grade D</option>
+    </select>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="employeeTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Employee Name</th>
+                    <th>Employee ID</th>
+                    <th>Grade</th>
+                    <th>Quarter No</th>
+                    <th>Requested Quarter</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <nav>
+        <ul class="pagination justify-content-center" id="pagination"></ul>
+    </nav>
+
+    <script>
+        // Sample data (replace with dynamic data or AJAX)
+        const total = 2000;
+        const employees = [];
+
+        const grades = ['A', 'B', 'C', 'D'];
+
+        for (let i = 1; i <= total; i++) {
+            employees.push({
+                name: `Employee ${i}`,
+                id: `DVC${String(i).padStart(5, '0')}`,
+                grade: grades[Math.floor(Math.random() * 4)],
+                quarter: i <= 1200 ? `Q${100 + Math.floor(Math.random() * 900)}` : '',
+                request: i <= 120 ? `Q${100 + Math.floor(Math.random() * 900)}` : ''
+            });
+        }
+
+        let currentPage = 1;
+        const rowsPerPage = 50;
+
+        function displayTable(data, page = 1) {
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedItems = data.slice(start, end);
+
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            paginatedItems.forEach((emp, index) => {
+                const row = `<tr>
+          <td>${start + index + 1}</td>
+          <td>${emp.name}</td>
+          <td>${emp.id}</td>
+          <td>${emp.grade}</td>
+          <td>${emp.quarter}</td>
+          <td>${emp.request}</td>
+        </tr>`;
+                tableBody.innerHTML += row;
+            });
+
+            setupPagination(data, page);
+        }
+
+        function setupPagination(data, selectedPage) {
+            const pageCount = Math.ceil(data.length / rowsPerPage);
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= pageCount; i++) {
+                pagination.innerHTML += `
+          <li class="page-item ${i === selectedPage ? 'active' : ''}">
+            <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+          </li>`;
+            }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const keyword = document.getElementById("searchInput").value.toLowerCase();
+            const gradeFilter = document.getElementById("gradeFilter").value;
+
+            let filtered = employees.filter(emp => {
+                return (
+                    (emp.name.toLowerCase().includes(keyword) || emp.id.toLowerCase().includes(keyword)) &&
+                    (gradeFilter === '' || emp.grade === gradeFilter)
+                );
+            });
+
+            displayTable(filtered, currentPage);
+        }
+
+        document.getElementById("searchInput").addEventListener("input", () => {
+            currentPage = 1;
+            applyFilters();
+        });
+
+        document.getElementById("gradeFilter").addEventListener("change", () => {
+            currentPage = 1;
+            applyFilters();
+        });
+
+        window.onload = () => {
+            displayTable(employees, 1);
+        };
+    </script>
+</body>
+
+</html>

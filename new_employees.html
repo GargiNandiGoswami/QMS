@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Employees at DVC</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7fa;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2e3aa0;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .controls select {
+            padding: 8px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: #2e3aa0;
+            color: white;
+            cursor: pointer;
+        }
+        
+        tr:hover {
+            background-color: #eef3f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>New Employees Joined DVC</h1>
+
+    <div class="controls">
+        <label for="gradeFilter">Filter:</label>
+        <select id="gradeFilter" onchange="filterTable()">
+    <option value="">All</option>
+    <option value="A">Grade A</option>
+    <option value="B">Grade B</option>
+    <option value="C">Grade C</option>
+    <option value="D">Grade D</option>
+  </select>
+
+        <label for="sortName">Sort:</label>
+        <select id="sortName" onchange="sortTable()">
+    <option value="">-- Select --</option>
+    <option value="asc">A → Z</option>
+    <option value="desc">Z → A</option>
+  </select>
+    </div>
+
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Grade</th>
+                <th>Join Date</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>DVC2021</td>
+                <td>Priya Raj</td>
+                <td>IT</td>
+                <td>Web Developer</td>
+                <td>B</td>
+                <td>2025-07-01</td>
+            </tr>
+            <tr>
+                <td>DVC2022</td>
+                <td>Karan Singh</td>
+                <td>Finance</td>
+                <td>Account Assistant</td>
+                <td>C</td>
+                <td>2025-06-28</td>
+            </tr>
+            <tr>
+                <td>DVC2023</td>
+                <td>Ishita Mehra</td>
+                <td>HR</td>
+                <td>Recruiter</td>
+                <td>B</td>
+                <td>2025-06-25</td>
+            </tr>
+            <tr>
+                <td>DVC2024</td>
+                <td>Aman Jain</td>
+                <td>Engineering</td>
+                <td>Assistant Engineer</td>
+                <td>A</td>
+                <td>2025-06-23</td>
+            </tr>
+            <tr>
+                <td>DVC2025</td>
+                <td>Sweta Paul</td>
+                <td>Admin</td>
+                <td>Clerk</td>
+                <td>D</td>
+                <td>2025-06-21</td>
+            </tr>
+            <tr>
+                <td>DVC2026</td>
+                <td>Deepak Sharma</td>
+                <td>Operations</td>
+                <td>Shift Staff</td>
+                <td>C</td>
+                <td>2025-06-20</td>
+            </tr>
+            <tr>
+                <td>DVC2027</td>
+                <td>Ritu Verma</td>
+                <td>IT</td>
+                <td>Database Executive</td>
+                <td>B</td>
+                <td>2025-06-18</td>
+            </tr>
+            <tr>
+                <td>DVC2028</td>
+                <td>Arjun Nair</td>
+                <td>Legal</td>
+                <td>Legal Assistant</td>
+                <td>B</td>
+                <td>2025-06-17</td>
+            </tr>
+            <tr>
+                <td>DVC2029</td>
+                <td>Neha Reddy</td>
+                <td>CSR</td>
+                <td>Coordinator</td>
+                <td>C</td>
+                <td>2025-06-15</td>
+            </tr>
+            <tr>
+                <td>DVC2030</td>
+                <td>Ramesh Das</td>
+                <td>Security</td>
+                <td>Guard</td>
+                <td>D</td>
+                <td>2025-06-13</td>
+            </tr>
+            <tr>
+                <td>DVC2031</td>
+                <td>Divya Kapoor</td>
+                <td>HR</td>
+                <td>Assistant</td>
+                <td>C</td>
+                <td>2025-06-12</td>
+            </tr>
+            <tr>
+                <td>DVC2032</td>
+                <td>Abhay Sinha</td>
+                <td>Engineering</td>
+                <td>Junior Engineer</td>
+                <td>A</td>
+                <td>2025-06-11</td>
+            </tr>
+            <tr>
+                <td>DVC2033</td>
+                <td>Anjali Thakur</td>
+                <td>Admin</td>
+                <td>PA</td>
+                <td>B</td>
+                <td>2025-06-10</td>
+            </tr>
+            <tr>
+                <td>DVC2034</td>
+                <td>Manish Dubey</td>
+                <td>Finance</td>
+                <td>Auditor</td>
+                <td>A</td>
+                <td>2025-06-09</td>
+            </tr>
+            <tr>
+                <td>DVC2035</td>
+                <td>Meena Gupta</td>
+                <td>IT</td>
+                <td>Support</td>
+                <td>C</td>
+                <td>2025-06-08</td>
+            </tr>
+            <tr>
+                <td>DVC2036</td>
+                <td>Vikas Yadav</td>
+                <td>CSR</td>
+                <td>Field Officer</td>
+                <td>D</td>
+                <td>2025-06-07</td>
+            </tr>
+            <tr>
+                <td>DVC2037</td>
+                <td>Simran Lohia</td>
+                <td>Legal</td>
+                <td>Advocate</td>
+                <td>B</td>
+                <td>2025-06-06</td>
+            </tr>
+            <tr>
+                <td>DVC2038</td>
+                <td>Sandeep Roy</td>
+                <td>Operations</td>
+                <td>Supervisor</td>
+                <td>A</td>
+                <td>2025-06-05</td>
+            </tr>
+            <tr>
+                <td>DVC2039</td>
+                <td>Nandini Bose</td>
+                <td>Engineering</td>
+                <td>Consultant</td>
+                <td>A</td>
+                <td>2025-06-04</td>
+            </tr>
+            <tr>
+                <td>DVC2040</td>
+                <td>Ravi Patel</td>
+                <td>Security</td>
+                <td>Guard</td>
+                <td>D</td>
+                <td>2025-06-03</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function filterTable() {
+            const filter = document.getElementById("gradeFilter").value;
+            const rows = document.querySelectorAll("#employeeTable tbody tr");
+            rows.forEach(row => {
+                const grade = row.children[4].textContent;
+                row.style.display = !filter || grade === filter ? "" : "none";
+            });
+        }
+
+        function sortTable() {
+            const direction = document.getElementById("sortName").value;
+            const rows = Array.from(document.querySelectorAll("#employeeTable tbody tr"));
+
+            if (!direction) return;
+
+            rows.sort((a, b) => {
+                const nameA = a.children[1].textContent.toLowerCase();
+                const nameB = b.children[1].textContent.toLowerCase();
+
+                return direction === "asc" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+            });
+
+            const tbody = document.getElementById("tableBody");
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+
+</body>
+
+</html>

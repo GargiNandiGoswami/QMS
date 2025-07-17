@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Requested Quarters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        input,
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        td,
+        th {
+            padding: 8px;
+            text-align: center;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>List of Employees Requesting Quarters</h1>
+
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search by Employee ID or Name">
+        <select id="gradeFilter">
+      <option value="">All Grades</option>
+      <option value="A">Grade A</option>
+      <option value="B">Grade B</option>
+      <option value="C">Grade C</option>
+      <option value="D">Grade D</option>
+    </select>
+        <select id="sortColumn">
+      <option value="">Sort By</option>
+      <option value="0">Employee ID</option>
+      <option value="1">Name</option>
+      <option value="2">Grade</option>
+      <option value="3">Requested Quarter</option>
+      <option value="4">Request Date</option>
+    </select>
+
+    </div>
+
+    <table id="requestTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Requested Quarter</th>
+                <th>Request Date</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+        const indianNames = [
+            "Aarav", "Vivaan", "Aditya", "Vihaan", "Arjun", "Sai", "Reyansh", "Ayaan", "Krishna", "Ishaan",
+            "Ananya", "Aadhya", "Diya", "Myra", "Ira", "Meera", "Saanvi", "Pari", "Riya", "Shrishti",
+            "Rohan", "Kabir", "Siddharth", "Aarohi", "Nisha", "Lakshmi", "Kavya", "Neha", "Yash", "Tanishq"
+        ];
+
+        const tableBody = document.getElementById("table-body");
+
+        for (let i = 1; i <= 120; i++) {
+            const empId = `DVC${1000 + i}`;
+            const name = indianNames[Math.floor(Math.random() * indianNames.length)];
+            const grade = ["A", "B", "C", "D"][Math.floor(Math.random() * 4)];
+            const qtrLetter = ["A", "B", "C"][Math.floor(Math.random() * 3)];
+            const requestedQuarter = `QTR-${qtrLetter}`;
+            const date = `2025-06-${String(Math.floor(Math.random() * 26) + 1).padStart(2, '0')}`;
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${empId}</td>
+        <td>${name}</td>
+        <td>${grade}</td>
+        <td>${requestedQuarter}</td>
+        <td>${date}</td>
+      `;
+            tableBody.appendChild(row);
+        }
+
+        document.getElementById("search").addEventListener("input", filterTable);
+        document.getElementById("gradeFilter").addEventListener("change", filterTable);
+        document.getElementById("sortColumn").addEventListener("change", sortTableDropdown);
+        document.getElementById("sortOrder").addEventListener("change", sortTableDropdown);
+
+        function filterTable() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const grade = document.getElementById("gradeFilter").value;
+
+            const rows = tableBody.querySelectorAll("tr");
+
+            rows.forEach(row => {
+                const [id, name, grd] = row.children;
+                const matchesSearch = (id.innerText + name.innerText).toLowerCase().includes(query);
+                const matchesGrade = !grade || grd.innerText === grade;
+
+                row.style.display = (matchesSearch && matchesGrade) ? "" : "none";
+            });
+        }
+
+        function sortTableDropdown() {
+            const colIndex = parseInt(document.getElementById("sortColumn").value);
+            const order = document.getElementById("sortOrder").value;
+            if (isNaN(colIndex)) return;
+
+            const rowsArray = Array.from(tableBody.querySelectorAll("tr"));
+
+            rowsArray.sort((a, b) => {
+                const valA = a.children[colIndex].innerText.toLowerCase();
+                const valB = b.children[colIndex].innerText.toLowerCase();
+
+                if (valA < valB) return order === "asc" ? -1 : 1;
+                if (valA > valB) return order === "asc" ? 1 : -1;
+                return 0;
+            });
+
+            tableBody.innerHTML = "";
+            rowsArray.forEach(row => tableBody.appendChild(row));
+        }
+    </script>
+
+</body>
+
+</html>

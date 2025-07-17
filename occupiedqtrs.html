@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Occupied Quarters List</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    #search {
+        display: block;
+        margin: 0 auto 20px auto;
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    
+    td,
+    th {
+        padding: 8px;
+        text-align: center;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<body>
+    <h1>List of Employees in Occupied Quarters</h1>
+    <input type="text" id="search" placeholder="Search by Employee ID or Name">
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Quarter No</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Rows will be inserted by JavaScript -->
+        </tbody>
+    </table>
+    <script>
+        const tableBody = document.getElementById("table-body");
+
+        // Generate 1200 rows
+        for (let i = 1; i <= 1200; i++) {
+            const row = document.createElement("tr");
+            const empId = `DVC${String(i).padStart(4, '0')}`;
+            const name = `Employee ${i}`;
+            const grade = ["A", "B", "C", "D"][Math.floor(Math.random() * 4)];
+            const quarter = `Q-${1000 + i}`;
+            row.innerHTML = `<td>${empId}</td><td>${name}</td><td>${grade}</td><td>${quarter}</td>`;
+            tableBody.appendChild(row);
+        }
+
+        // Search functionality
+        document.getElementById("search").addEventListener("input", function() {
+            const query = this.value.toLowerCase();
+            document.querySelectorAll("#table-body tr").forEach(row => {
+                row.style.display = row.innerText.toLowerCase().includes(query) ? "" : "none";
+            });
+        });
+    </script>
+</body>
+
+</html>

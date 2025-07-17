@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Quarters - DVC Admin</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .container {
+            background-color: #fff;
+            padding: 25px 40px;
+            border-radius: 10px;
+            width: 500px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #2e3aa0;
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        button {
+            margin-top: 25px;
+            width: 100%;
+            background-color: #2e3aa0;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1c2975;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .back-link a {
+            color: #2e3aa0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>🏠 Add New Quarter</h2>
+        <form action="add_quarters.php" method="POST">
+            <label for="quarter_no">Quarter Number:</label>
+            <input type="text" name="quarter_no" id="quarter_no" required>
+
+            <label for="quarter_type">Quarter Type:</label>
+            <select name="quarter_type" id="quarter_type" required>
+      <option value="">-- Select Type --</option>
+      <option value="1BHK">1 BHK</option>
+      <option value="2BHK">2 BHK</option>
+      <option value="3BHK">3 BHK</option>
+    </select>
+
+            <label for="block">Block:</label>
+            <input type="text" name="block" id="block" required placeholder="e.g., A, B, C, etc.">
+
+            <label for="status">Status:</label>
+            <select name="status" id="status" required>
+      <option value="">-- Select Status --</option>
+      <option value="Vacant">Vacant</option>
+      <option value="Occupied">Occupied</option>
+      <option value="Under Maintenance">Under Maintenance</option>
+    </select>
+
+            <label for="grade">Grade Suitability:</label>
+            <select name="grade" id="grade" required>
+      <option value="">-- Select Grade --</option>
+      <option value="A">Grade A</option>
+      <option value="B">Grade B</option>
+      <option value="C">Grade C</option>
+      <option value="D">Grade D</option>
+    </select>
+
+            <button type="submit">Add Quarter</button>
+        </form>
+
+        <div class="back-link">
+            <a href="admin.html">← Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

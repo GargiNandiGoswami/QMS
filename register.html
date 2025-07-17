@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DVC Registration Portal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 0;
+            font-family: Arial, sans-serif;
+            background: url('BG.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .page-title h1 {
+            font-size: 36px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            margin: 0;
+        }
+        
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 40px;
+            width: 400px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .form-container img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: navy;
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+            color: navy;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: navy;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #001f4d;
+        }
+        
+        .link {
+            margin-top: 15px;
+            color: navy;
+            font-size: 14px;
+        }
+        
+        .link a {
+            color: navy;
+            text-decoration: none;
+        }
+        
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-title">
+        <h1>Registration Portal</h1>
+    </div>
+
+    <div class="form-container">
+        <img src="DVClogo.svg" alt="DVC Logo">
+        <h2>Register</h2>
+        <form action="submit1.php" method="POST">
+            Employee ID: <input type="text" name="employee_id"><br> Name: <input type="text" name="name"><br> Father's Name: <input type="text" name="father_name"><br> DOB: <input type="date" name="dob"><br> Gender: <input type="text" name="gender"><br>            Email: <input type="email" name="email"><br> Phone: <input type="text" name="phone"><br> Local Address: <input type="text" name="local_address"><br> Permanent Address: <input type="text" name="permanent_address"><br> Department:
+            <input type="text" name="department"><br> Designation: <input type="text" name="designation"><br> Date of Joining: <input type="date" name="doj"><br> Password: <input type="password" name="password"><br>
+            <button type="submit">Register</button>
+        </form>
+        <div class="link">
+            Already registered? <a href="login.html">Login here</a>
+        </div>
+        <div class="link">
+            <a href="https://www.dvc.gov.in">Back to Damodar Valley Corporation</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

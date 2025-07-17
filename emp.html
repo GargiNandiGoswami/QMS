@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        header {
+            background: #fff;
+            padding: 15px 30px;
+            border-bottom: 2px solid #e91e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        header nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .dashboard {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .profile,
+        .content,
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .profile {
+            width: 25%;
+            text-align: center;
+        }
+        
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        
+        .content {
+            width: 50%;
+        }
+        
+        .sidebar {
+            width: 25%;
+        }
+        
+        h2 {
+            background: #3f51b5;
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        td,
+        th {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .holiday {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        
+        .red {
+            background: #ffe5e5;
+        }
+        
+        .green {
+            background: #e6ffe6;
+        }
+        
+        .yellow {
+            background: #ffffe6;
+        }
+        
+        .blue {
+            background: #e6f0ff;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #3f51b5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .mini-card {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .mini-card div {
+            background: #3f51b5;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            width: 30%;
+            text-align: center;
+        }
+        
+        .applied-btn {
+            background: gray;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="DVClogo.svg" alt="Logo" style="height: 40px;">
+        <center>
+            <h1>EMPLOYEE DASHBOARD</h1>
+        </center>
+    </header>
+
+    <div class="dashboard">
+        <div class="profile">
+            <img src="user.gif" alt="Employee">
+            <h3>Rajesh Sharma</h3>
+            <p>Junior Engineer</p>
+            <p><strong>At work for:</strong> 2 years 4 months</p>
+
+            <div class="mini-card">
+                <div><strong>12</strong><br>ATTENDANCE</div>
+                <div><strong>5</strong><br>LEAVES</div>
+                <div><strong>0</strong><br>AWARDS</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2>Personal Details</h2>
+            <table>
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>Rajesh Sharma</td>
+                </tr>
+                <tr>
+                    <td><strong>Father's Name</strong></td>
+                    <td>Suresh Sharma</td>
+                </tr>
+                <tr>
+                    <td><strong>Date of Birth</strong></td>
+                    <td>15-Jan-1995</td>
+                </tr>
+                <tr>
+                    <td><strong>Gender</strong></td>
+                    <td>Male</td>
+                </tr>
+                <tr>
+                    <td><strong>Email</strong></td>
+                    <td>rajesh.sharma@gmail.com</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone</strong></td>
+                    <td>9876543210</td>
+                </tr>
+                <tr>
+                    <td><strong>Local Address</strong></td>
+                    <td>Qtr-123, BTPS Colony, Jharkhand</td>
+                </tr>
+                <tr>
+                    <td><strong>Permanent Address</strong></td>
+                    <td>Hazaribagh, Jharkhand</td>
+                </tr>
+            </table>
+
+            <h2 style="margin-top: 20px;">Company Details</h2>
+            <table>
+                <tr>
+                    <td><strong>Employee ID</strong></td>
+                    <td>DVC5678</td>
+                </tr>
+                <tr>
+                    <td><strong>Department</strong></td>
+                    <td>Electrical Maintenance</td>
+                </tr>
+                <tr>
+                    <td><strong>Designation</strong></td>
+                    <td>Junior Engineer</td>
+                </tr>
+            </table>
+
+            <!-- Apply for Quarter Button -->
+            <div id="applyButtonSection">
+                <button id="applyButton">Apply for Quarter</button>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h2>Notice Board</h2>
+            <p style="padding: 10px;">No Notice</p>
+
+            <h2 style="margin-top: 20px;">Upcoming Holidays</h2>
+            <div class="holiday red">Office Off — 15 Aug 2025</div>
+            <div class="holiday green">Office Off — 02 Oct 2025</div>
+            <div class="holiday yellow">Office Off — 25 Dec 2025</div>
+            <div class="holiday blue">Office Off — 01 Jan 2026</div>
+        </div>
+    </div>
+
+    <script>
+        const employeeId = "DVC5678"; // Simulated Employee ID
+        const appliedKey = `session_applied_${employeeId}`;
+        const buttonSection = document.getElementById("applyButtonSection");
+
+        const today = new Date();
+        const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+        const endDate = new Date(startDate);
+        endDate.setMonth(endDate.getMonth() + 2);
+
+        const isWithinWindow = today >= startDate && today <= endDate;
+        const hasApplied = sessionStorage.getItem(appliedKey) === "true";
+
+        function showApplied() {
+            buttonSection.innerHTML = '<button class="applied-btn" disabled>Applied</button>';
+        }
+
+        if (!isWithinWindow) {
+            buttonSection.innerHTML = '<button class="applied-btn" disabled>Apply Closed</button>';
+        } else if (hasApplied) {
+            showApplied();
+        } else {
+            const btn = document.getElementById("applyButton");
+            btn.addEventListener("click", () => {
+                sessionStorage.setItem(appliedKey, "true");
+                showApplied();
+                window.location.href = 'http://localhost/dvc_form/allotform.html';
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Application for Family Accommodation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("BG.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            color: white;
+            margin: 40px 0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .timer {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: yellow;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+        
+        .group input,
+        .group select {
+            margin-top: 10px;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+        
+        button {
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .sign {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>APPLICATION FOR FAMILY ACCOMMODATION</h1>
+        <div class="timer">
+            🕒 Submission Window: <strong>15 June 2025</strong> to <strong>15 August 2025</strong><br>
+            <span id="timer">Loading countdown...</span>
+        </div>
+
+        <form id="accommodationForm" action="submit.php" method="post" enctype="multipart/form-data">
+
+            <!-- Your complete form content continues below as is -->
+            <!-- Example start -->
+            <label>1. Name of employee & Deptt./Office:</label>
+            <input type="text" name="employee_name" required>
+
+            <label>2. Designation, Pay Scale with grade pay, P.S. No. / I.C. No.:</label>
+            <input type="text" name="designation_name" required>
+
+            <label>3. Pay Comprises:</label>
+            <div class="group">
+                <input type="text" name="basic_pay" placeholder="1. Basic Pay" required>
+                <input type="text" name="grade_pay" placeholder="2. Grade Pay" required>
+                <input type="text" name="spl_pay" placeholder="3. Spl. Pay" required>
+                <input type="text" name="tech_pay" placeholder="4. Tech. Pay" required>
+                <input type="text" name="duty_allowance" placeholder="5. Duty Allowance" required>
+                <input type="text" name="npa" placeholder="6. Non-Practice Allowance" required>
+            </div>
+
+            <label>4. Date of entering in D.V.C.:</label>
+            <input type="date" name="date_entry_dvc" required>
+
+            <label>5. Date of Present joining at the station:</label>
+            <input type="date" name="date_join_station" required>
+
+            <label>6. Date of entry in to slab:</label>
+            <input type="date" name="date_slab_entry" required>
+
+            <label>7. Whether service is continuous If not the particulars:</label>
+            <select name="service_continuity" required>
+        <option value="">-- Select --</option>
+        <option value="yes">YES</option>
+        <option value="no">NO</option>
+      </select>
+
+            <label>8. Marital Status:</label>
+            <select name="marital_status" required>
+        <option value="">-- Select --</option>
+        <option value="married">Married</option>
+        <option value="unmarried">Unmarried</option>
+      </select>
+
+            <label>9. Quarter No. / Room under present occupation, If any:</label>
+            <input type="text" name="present_qtr_room" required>
+
+            <label>10. (a). Family accommodation at old station:</label>
+            <select name="family_accommodation_old" required>
+        <option value="">-- Select --</option>
+        <option value="yes">YES</option>
+        <option value="no">NO</option>
+      </select>
+
+            <label>10 (b). or House rent allowance at old station:</label>
+            <select name="hra_old_station" required>
+        <option value="">-- Select --</option>
+        <option value="yes">YES</option>
+        <option value="no">NO</option>
+      </select>
+
+            <label>11. Preference of specific quarters against notification if any:</label>
+            <input type="text" name="preferred_quarters">
+
+            <label>12. Willing to take any entitled quarters:</label>
+            <select name="willing_any_qtr" required>
+        <option value="">-- Select --</option>
+        <option value="yes">YES</option>
+        <option value="no">NO</option>
+      </select>
+
+            <label>13. Spouse working at BTPS & quarters allotted:</label>
+            <input type="text" name="spouse_quarter_info">
+
+            <label>14. SC/ST (if applicable, enclose proof):</label>
+            <input type="text" name="caste_status">
+
+            <label>15. Undertaking:</label>
+            <div class="group">
+                <input type="text" name="undertaking_a" placeholder="(a) I shall use the quarters if allotted for normal residential purpose." required>
+                <select name="undertaking_a_response" required>
+          <option value="yes">YES</option>
+          <option value="no">NO</option>
+        </select>
+                <input type="text" name="undertaking_b" placeholder="(b) If I fail to occupy the allotted quarter, I forfeit my claim for a year." required>
+                <select name="undertaking_b_response" required>
+          <option value="yes">YES</option>
+          <option value="no">NO</option>
+        </select>
+            </div>
+
+            <label>16. Date of Birth:</label>
+            <input type="date" name="dob" required>
+
+            <div class="date">
+                <label>Date of Apply:</label>
+                <input type="date" name="apply_date" required>
+            </div>
+
+            <div class="sign">
+                <label>Upload Signature:</label>
+                <input type="file" name="signature" accept="image/*" required>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit</button>
+            <button onclick="goBack()" style="margin: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    ← Back to Dashboard
+</button>
+
+        </form>
+    </div>
+
+    <script>
+        const startDate = new Date("2025-06-15T00:00:00").getTime();
+        const endDate = new Date("2025-08-15T23:59:59").getTime();
+        const now = new Date().getTime();
+
+        const timerEl = document.getElementById("timer");
+        const form = document.getElementById("accommodationForm");
+
+        if (now < startDate) {
+            form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+            timerEl.textContent = "⏳ Form will open on 15 June 2025";
+        } else if (now > endDate) {
+            form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+            timerEl.textContent = "🚫 Submission period is over (Closed on 15 August 2025)";
+        } else {
+            const countdown = setInterval(() => {
+                const current = new Date().getTime();
+                const distance = endDate - current;
+
+                if (distance <= 0) {
+                    clearInterval(countdown);
+                    timerEl.textContent = "🚫 Submission period is over.";
+                    form.querySelectorAll("input, select, textarea, button").forEach(el => el.disabled = true);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerEl.textContent = `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        function goBack() {
+            // Change the URL to the actual dashboard path if different
+            window.location.href = "employee1.html";
+        }
+    </script>
+</body>
+
+</html>
